@@ -1,5 +1,5 @@
 # Bench
-
+```
 ┌─────────┬──────────────┬─────────┬────────────────────┬──────────┬─────────┐
 │ (index) │ Task Name    │ ops/sec │ Average Time (ns)  │ Margin   │ Samples │
 ├─────────┼──────────────┼─────────┼────────────────────┼──────────┼─────────┤
@@ -16,3 +16,4 @@ Starting Simple-git benchmark...
 Simple-git: 3513.821750000003 ms
 Starting Simple-git raw benchmark...
 Simple-git raw: 3493.05775 ms
+```
