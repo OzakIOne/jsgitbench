@@ -18,7 +18,7 @@ const fileList = [
   `packages/docusaurus-plugin-content-docs/package.json`,
   `packages/docusaurus-mdx-loader/package.json`,
   `website/package.json`,
-  `website/docusaurus.config.js`,
+  // `website/docusaurus.config.js`, // simpleGit doesn't like it /shrug
   `packages/docusaurus-theme-classic/package.json`,
   `packages/docusaurus/package.json`,
   `package.json`,
@@ -26,26 +26,42 @@ const fileList = [
 ]
 
 function shelljsTaskSync(filename) {
-  const result = shell.exec(`git log -1 --format="%ai %an" -- ${filename}`, { silent: true, cwd: dirname })
-  return result.stdout
+  try {
+    const result = shell.exec(`git log -1 --format="%ai %an" -- ${filename}`, { silent: true, cwd: dirname })
+    return result.stdout
+  } catch (error) {
+    throw new Error('shelljsTaskSync:', error)
+  }
 }
 
 function shelljsTaskAsync(filename) {
-  return new Promise((resolve) => {
-    shell.exec(`git log -1 --format="%ai %an" -- ${filename}`, { silent: true, cwd: dirname }, (code, stdout) => {
-      resolve(stdout)
+  try {
+    return new Promise((resolve) => {
+      shell.exec(`git log -1 --format="%ai %an" -- ${filename}`, { silent: true, cwd: dirname }, (code, stdout) => {
+        resolve(stdout)
+      })
     })
-  })
+  } catch (error) {
+    throw new Error('shelljsTaskAsync:', error)
+  }
 }
 
 async function execaTask(filename) {
-  const { stdout } = await execa('git', ['log', '-1', '--format="%ai %an"', '--', filename], { cwd: dirname })
-  return stdout
+  try {
+    const { stdout } = await execa('git', ['log', '-1', '--format="%ai %an"', '--', filename], { cwd: dirname })
+    return stdout
+  } catch (error) {
+    throw new Error('execaTask:', error)
+  }
 }
 
 async function simpleGitTask(filename) {
-  const log = await git.log(['-1', '--format="%ai %an"', filename])
-  return log.latest.date + ' ' + log.latest.author_name
+  try {
+    const log = await git.log(['-1', '--format="%ai %an"', filename])
+    return log.latest.date + ' ' + log.latest.author_name
+  } catch (error) {
+    throw new Error('simpleGitTask:', { cause: error })
+  }
 }
 
 async function runBenchmarks() {
