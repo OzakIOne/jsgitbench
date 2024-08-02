@@ -43,6 +43,24 @@ bench.js new
 │   23    │                        'Simple-git yarn.lock'                        │  '270'  │ 3700121.641816462  │ '±0.77%' │   136   │
 └─────────┴──────────────────────────────────────────────────────────────────────┴─────────┴────────────────────┴──────────┴─────────┘
 
+bench.js repeated
+┌─────────┬──────────────────────────────────────────────────────────────────────┬─────────┬────────────────────┬──────────┬─────────┐
+│ (index) │                              Task Name                               │ ops/sec │ Average Time (ns)  │  Margin  │ Samples │
+├─────────┼──────────────────────────────────────────────────────────────────────┼─────────┼────────────────────┼──────────┼─────────┤
+│    3    │            'Simple-git packages/docusaurus/package.json'             │  '224'  │ 4464047.592298119  │ '±0.83%' │   113   │
+│    4    │        'Simple-git Repeated packages/docusaurus/package.json'        │  '22'   │ 45212426.997721195 │ '±1.76%' │   12    │
+│    8    │                        'Simple-git yarn.lock'                        │  '278'  │ 3593861.0076904297 │ '±0.49%' │   140   │
+│    9    │                   'Simple-git Repeated yarn.lock'                    │  '27'   │ 35740508.79052707  │ '±1.04%' │   14    │
+│   13    │                  'Simple-git website/package.json'                   │  '244'  │ 4084420.3832188267 │ '±0.72%' │   123   │
+│   14    │              'Simple-git Repeated website/package.json'              │  '24'   │ 40655987.074741945 │ '±0.41%' │   13    │
+│   18    │     'Simple-git packages/docusaurus-theme-classic/package.json'      │  '269'  │ 3714196.2230205536 │ '±0.51%' │   135   │
+│   19    │ 'Simple-git Repeated packages/docusaurus-theme-classic/package.json' │  '26'   │ 37087327.14184693  │ '±0.97%' │   14    │
+│   23    │       'Simple-git packages/docusaurus-mdx-loader/package.json'       │  '228'  │ 4382088.417333105  │ '±0.61%' │   115   │
+│   24    │  'Simple-git Repeated packages/docusaurus-mdx-loader/package.json'   │  '23'   │ 43206579.82925574  │ '±0.86%' │   12    │
+│   28    │                      'Simple-git package.json'                       │  '282'  │ 3541955.400100896  │ '±0.41%' │   142   │
+│   29    │                  'Simple-git Repeated package.json'                  │  '27'   │  35820782.7189139  │ '±1.11%' │   14    │
+└─────────┴──────────────────────────────────────────────────────────────────────┴─────────┴────────────────────┴──────────┴─────────┘
+
 index.js
 Starting Shelljs benchmark...
 Shelljs: 33424.261249999996 ms

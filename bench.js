@@ -64,8 +64,22 @@ async function simpleGitTask(filename) {
   }
 }
 
+async function simpleGitRepeatedTask(filename, iterations) {
+  try {
+    let result
+    for (let i = 0; i < iterations; i++) {
+      const log = await git.log(['-1', '--format="%ai %an"', filename])
+      result = log.latest.date + ' ' + log.latest.author_name
+    }
+    return result
+  } catch (error) {
+    throw new Error('simpleGitRepeatedTask:', { cause: error })
+  }
+}
+
 async function runBenchmarks() {
   const bench = new Bench()
+  const iterations = 10
 
   for (let i = 0; i < fileList.length; i++) {
     const filename = sample(fileList)
@@ -84,6 +98,10 @@ async function runBenchmarks() {
 
     bench.add(`Simple-git ${filename}`, async () => {
       return await simpleGitTask(filename)
+    })
+
+    bench.add(`Simple-git Repeated ${filename}`, async () => {
+      return await simpleGitRepeatedTask(filename, iterations)
     })
   }
 
