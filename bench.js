@@ -5,8 +5,14 @@ import { Bench } from 'tinybench'
 
 const git = simpleGit()
 
-function shelljsTask() {
+function shelljsTaskSync() {
   shell.exec('git log', { silent: true })
+}
+
+function shelljsTaskAsync() {
+  return new Promise((resolve) => {
+    shell.exec('git log', { silent: true }, () => resolve())
+  })
 }
 
 async function execaTask() {
@@ -21,20 +27,25 @@ async function simpleGitTask() {
 async function runBenchmarks() {
   const bench = new Bench()
 
-  bench
-    .add('Shelljs', () => {
-      shelljsTask()
-    })
-    .add('Execa', async () => {
-      await execaTask()
-    })
-    .add('Simple-git', async () => {
-      await simpleGitTask()
-    })
+  bench.add('Shelljs Sync', () => {
+    shelljsTaskSync()
+  })
+
+  bench.add('Shelljs Async', async () => {
+    await shelljsTaskAsync()
+  })
+
+  bench.add('Execa', async () => {
+    await execaTask()
+  })
+
+  bench.add('Simple-git', async () => {
+    await simpleGitTask()
+  })
 
   await bench.run()
 
   console.table(bench.table())
 }
 
-runBenchmarks()
+runBenchmarks().catch(console.error)
