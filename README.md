@@ -1,5 +1,6 @@
 # Bench
 
+## Basic for loop git log -v
 ```txt
 bench.js
 ┌─────────┬─────────────────┬─────────┬────────────────────┬──────────┬─────────┐
@@ -21,12 +22,13 @@ Simple-git: 3513.821750000003 ms
 Starting Simple-git raw benchmark...
 Simple-git raw: 3493.05775 ms
 ```
-
+## Perf hooks
 Read last update data perf hooks:
 https://docs.google.com/spreadsheets/d/1gyu_nL2waVfY8jNm9gQKSOp7t4lnNAzEhZZrxrr14Ks/edit?usp=sharing
 
 ![image](https://github.com/user-attachments/assets/5fcf254f-01bd-4bb8-b276-a540df59553b)
 
+## Hyperfine
 ```
 Hyperfine bench website:build:fast
 Simple git 
