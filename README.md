@@ -26,3 +26,21 @@ Read last update data perf hooks:
 https://docs.google.com/spreadsheets/d/1gyu_nL2waVfY8jNm9gQKSOp7t4lnNAzEhZZrxrr14Ks/edit?usp=sharing
 
 ![image](https://github.com/user-attachments/assets/5fcf254f-01bd-4bb8-b276-a540df59553b)
+
+```
+Hyperfine bench website:build:fast
+Simple git 
+Benchmark 1: yarn build:website:fast
+  Time (mean ± σ):     15.065 s ±  1.353 s    [User: 22.374 s, System: 3.245 s]
+  Range (min … max):   14.085 s … 17.427 s    5 runs
+
+Execa
+Benchmark 1: yarn build:website:fast
+  Time (mean ± σ):     14.498 s ±  0.584 s    [User: 22.117 s, System: 3.500 s]
+  Range (min … max):   14.135 s … 15.515 s    5 runs
+
+Main
+Benchmark 1: yarn build:website:fast
+  Time (mean ± σ):     15.668 s ±  1.667 s    [User: 24.751 s, System: 3.658 s]
+  Range (min … max):   14.257 s … 17.508 s    5 runs
+```
